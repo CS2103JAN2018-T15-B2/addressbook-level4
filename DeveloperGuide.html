@@ -45,9 +45,10 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#add-appointment-feature">3.2. Add Appointment feature</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -537,6 +538,22 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Method</strong> : GradientDescent.java</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extract targeted fields from user list in addressbook.</p>
+</li>
+<li>
+<p>Do some predictive calculation based on gradient descent method.</p>
+</li>
+<li>
+<p>Output the "ExpectedSpending" back to the view</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
@@ -870,20 +887,188 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="add-appointment-feature"><a class="link" href="#add-appointment-feature">3.2. Add Appointment feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Add appointment feature is facilitated by all the components of the application. It supports adding of entry to the calendar through the command lines.</p>
+</div>
+<div class="paragraph">
+<p>After the <code>commandBox</code> in UI passed the text field input with add_appointment command word to the <code>LogicManger</code>, <code>AddressBookParser</code> will identify the command word and
+call <code>AddAppointmentCommandParser</code> which will parse the input text to create a new <code>AppointmentEntry</code> object and return a new <code>AddAppointmentCommand</code> object. The <code>LogicManger</code> will
+then execute this command.</p>
+</div>
+<div class="paragraph">
+<p>The <code>AddAppointmentCommand</code> calls <code>ModelManager</code> to add an appointment to calendar, <code>ModelManager</code> then call <code>AddressBook' to add appointment and raise a `AddressBookChangedEvent</code>, finally <code>AddressBook</code> calls its <code>InsuranceCalendar</code> object to
+add an appointment and raise a .</p>
+</div>
+<div class="paragraph">
+<p>Within <code>InsuranceCalendar</code>, the code is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"> <span class="directive">public</span> <span class="type">void</span> addAppointment(AppointmentEntry entry)<span class="directive">throws</span> DuplicateAppointmentException {
+        <span class="keyword">if</span> (contains(entry)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateAppointmentException();
+        }
+        calendar.addEntry(entry.getAppointmentEntry());
+        appointmentEntries.add(entry);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both the <code>Calendar</code> class from the CalendarFx Lib and the <code>AppointmentEntry</code> list that the <code>InsuranceCalendar</code> class maintains are
+updated with the addition of the new appointment. Addition od entry to the <code>Calendar</code> object automatically reflects the change on the
+<code>CalendarView</code> GUI</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, as a <code>AddressBookChangedEvent</code> is raised, the <code>EventCenter</code> calls the <code>Storage Manager</code> to handle this event and the
+added appointment is saved to persistent data
+==== Design Considerations</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-add_appointment-command-code"><a class="link" href="#aspect-implementation-of-code-add_appointment-command-code">Aspect: Implementation of <code>Add_Appointment command</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> create a InsuranceCalendar class in Model that maintain a list of appointment entries`</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Preserve existing Architecture with little alternation to architecture design</p>
+</li>
+<li>
+<p>Cons: Duplicate set of appointment entries maintained</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use only the <code>Calendar</code> in CalendarFX Lib</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simple and clean, only one set of appointment entries kept.</p>
+</li>
+<li>
+<p>Cons: Drastic alteration to existing Structure, original Storage functions will not work.
+===== Aspect: How to add_appointment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Ask the user to specify title, start date and end date.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: user may find it tedious to type in the date and time also cannot be specified</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> user click on the calendar UI to specify date, specify time in command box.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: more flexible and user friendly interface</p>
+</li>
+<li>
+<p>Cons: more elaborate parser and calendar UI event listener need to be in place to support</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-type-of-appointment-supported"><a class="link" href="#aspect-type-of-appointment-supported">Aspect: Type of appointment supported</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> the user has to specify the title himself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: easy to implement</p>
+</li>
+<li>
+<p>Cons: require user to specify the appointment himself</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> link appointment to person list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Might be more intuitive for the user.</p>
+</li>
+<li>
+<p>Cons: require elaborate event listener for Person list panel</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-undo-redo-commands-2"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands-2">Aspect: Data structure to support the undo/redo commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>**Alternative 1 (current choice):Array list to maintain the list of the appointments;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to understand and implement.</p>
+</li>
+<li>
+<p>Cons: entires duplicated twice.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> use Calendar Library</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Clean and simple</p>
+</li>
+<li>
+<p>Cons: breaks the layering of the current architecture</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -914,7 +1099,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2428,7 +2613,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 15:31:26 UTC
+Last updated 2018-03-21 15:46:19 UTC
 </div>
 </div>
 </body>
