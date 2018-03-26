@@ -50,6 +50,7 @@
 <li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#prediction-function">3.7. Prediction Function</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1140,6 +1141,37 @@ come up with a better insurance policy.</p>
 <h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prediction-function"><a class="link" href="#prediction-function">3.7. Prediction Function</a></h3>
+<div class="paragraph">
+<p>A command by the keyword of "predict" is added. It takes no argument.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Function</code> : Customers in the list may or may not have
+"actual spending" entered. Because at the point in time,
+the customer has not purchased any policy at all.
+Hence it would be convenient to have a way to predict the
+likely amount of purchase they would make so that the
+insurance agent can prioritize those customers with higher
+likelihood to spend more.</p>
+</li>
+<li>
+<p><code>Implementation</code> : Each customer&#8217;s data would be extracted as a row.
+The column represents. Each Targeted fields such as income, age and so on.
+The model used here is linear regression. That means we assume the purchase made
+by the customer is a linear combination of all the targeted fields.
+This model is not perfect. However for the first version of this
+function, we will just use this model. These data would form a matrix.
+Imaging a form of Ax=b where A is a matrix and x is a vector of weights
+and b is the expected outcome. The name of the game is to find the
+weights that minimises the loss of the objective function A.
+The numerical solver used here is Stochastic Gradient Descent.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2667,7 +2699,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-25 08:26:34 UTC
+Last updated 2018-03-26 04:43:19 UTC
 </div>
 </div>
 </body>

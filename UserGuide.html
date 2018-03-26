@@ -39,16 +39,17 @@
 <li><a href="#listing-entered-commands-code-history-code">3.9. Listing entered commands : <code>history</code></a></li>
 <li><a href="#undoing-previous-command-code-undo-code">3.10. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.11. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.13. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.14. Saving the data</a></li>
-<li><a href="#intended-features">3.15. Intended Features</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></li>
-<li><a href="#remove-existing-appointment-code-coming-in-v2-0-code">3.17. remove existing appointment <code>[coming in v2.0]</code></a></li>
-<li><a href="#update-existing-appointment-code-coming-in-v2-0-code">3.18. update existing appointment <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-task-to-task-pad-coming-in-v2-0">3.19. add task to task pad`[coming in v2.0]`</a></li>
-<li><a href="#remove-task-on-task-pad-coming-in-v2-0">3.20. remove task on task pad`[coming in v2.0]`</a></li>
-<li><a href="#predict-purchasing-power">3.21. Predict Purchasing Power</a></li>
+<li><a href="#predict-code-predict-code">3.12. Predict: <code>predict</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.15. Saving the data</a></li>
+<li><a href="#intended-features">3.16. Intended Features</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#remove-existing-appointment-code-coming-in-v2-0-code">3.18. remove existing appointment <code>[coming in v2.0]</code></a></li>
+<li><a href="#update-existing-appointment-code-coming-in-v2-0-code">3.19. update existing appointment <code>[coming in v2.0]</code></a></li>
+<li><a href="#add-task-to-task-pad-coming-in-v2-0">3.20. add task to task pad`[coming in v2.0]`</a></li>
+<li><a href="#remove-task-on-task-pad-coming-in-v2-0">3.21. remove task on task pad`[coming in v2.0]`</a></li>
+<li><a href="#predict-purchasing-power">3.22. Predict Purchasing Power</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -500,28 +501,50 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="predict-code-predict-code"><a class="link" href="#predict-code-predict-code">3.12. Predict: <code>predict</code></a></h3>
+<div class="paragraph">
+<p>Predict the potential spending of the of a new customer.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Initially</code><br>
+two customers one with <code>actualSpending</code> &gt; 0 while the other with
+<code>actualSpending</code> == 0.</p>
+</li>
+<li>
+<p><code>After</code><br>
+The customer with <code>actualSpending</code> == 0 now has <code>expectedSpending</code> shown.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.13. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.14. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.15. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intended-features"><a class="link" href="#intended-features">3.15. Intended Features</a></h3>
+<h3 id="intended-features"><a class="link" href="#intended-features">3.16. Intended Features</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -537,38 +560,38 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-existing-appointment-code-coming-in-v2-0-code"><a class="link" href="#remove-existing-appointment-code-coming-in-v2-0-code">3.17. remove existing appointment <code>[coming in v2.0]</code></a></h3>
+<h3 id="remove-existing-appointment-code-coming-in-v2-0-code"><a class="link" href="#remove-existing-appointment-code-coming-in-v2-0-code">3.18. remove existing appointment <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to delete an existing appointment by specifying the appointment title and interval</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="update-existing-appointment-code-coming-in-v2-0-code"><a class="link" href="#update-existing-appointment-code-coming-in-v2-0-code">3.18. update existing appointment <code>[coming in v2.0]</code></a></h3>
+<h3 id="update-existing-appointment-code-coming-in-v2-0-code"><a class="link" href="#update-existing-appointment-code-coming-in-v2-0-code">3.19. update existing appointment <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to update an existing appointment by specifying the old appointment title and interval
 then the new appointment title and interval</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-task-to-task-pad-coming-in-v2-0"><a class="link" href="#add-task-to-task-pad-coming-in-v2-0">3.19. add task to task pad`[coming in v2.0]`</a></h3>
+<h3 id="add-task-to-task-pad-coming-in-v2-0"><a class="link" href="#add-task-to-task-pad-coming-in-v2-0">3.20. add task to task pad`[coming in v2.0]`</a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to add a task to the task pad GUI  specifying the task title , task details</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-task-on-task-pad-coming-in-v2-0"><a class="link" href="#remove-task-on-task-pad-coming-in-v2-0">3.20. remove task on task pad`[coming in v2.0]`</a></h3>
+<h3 id="remove-task-on-task-pad-coming-in-v2-0"><a class="link" href="#remove-task-on-task-pad-coming-in-v2-0">3.21. remove task on task pad`[coming in v2.0]`</a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to remove a task to the task pad GUI  specifying the task index</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="predict-purchasing-power"><a class="link" href="#predict-purchasing-power">3.21. Predict Purchasing Power</a></h3>
+<h3 id="predict-purchasing-power"><a class="link" href="#predict-purchasing-power">3.22. Predict Purchasing Power</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -645,7 +668,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-25 08:26:34 UTC
+Last updated 2018-03-26 04:43:19 UTC
 </div>
 </div>
 </body>
