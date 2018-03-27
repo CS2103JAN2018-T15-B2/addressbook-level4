@@ -436,7 +436,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+<img src="images/UiClassDiagramUpdated.png" alt="UiClassDiagramUpdated" width="800">
 </div>
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
@@ -444,7 +444,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-T15-B2/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>CalendarPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103JAN2018-T15-B2/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-T15-B2/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -514,7 +514,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+<img src="images/ModelClassDiagramUpdated.png" alt="ModelClassDiagramUpdated" width="800">
 </div>
 <div class="title">Figure 9. Structure of the Model Component</div>
 </div>
@@ -534,6 +534,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </li>
 <li>
 <p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>exposes an Calendar that the Calendar GUI response to any changes made to the Calendar</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -561,7 +564,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+<img src="images/StorageClassDiagramUpdated.png" alt="StorageClassDiagramUpdated" width="800">
 </div>
 <div class="title">Figure 10. Structure of the Storage Component</div>
 </div>
@@ -2699,7 +2702,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-26 04:43:19 UTC
+Last updated 2018-03-27 22:44:20 UTC
 </div>
 </div>
 </body>
