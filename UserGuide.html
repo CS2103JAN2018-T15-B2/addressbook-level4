@@ -611,12 +611,27 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <ul>
 <li>
 <p><code>Initially</code><br>
-two customers one with <code>actualSpending</code> &gt; 0 while the other with
-<code>actualSpending</code> == 0.</p>
+two customers with <code>actualSpending</code> &gt; 0 while the other with
+<code>actualSpending</code> == 0(actual spending will actually not be shown
+if it is zero).</p>
 </li>
 <li>
 <p><code>After</code><br>
 The customer with <code>actualSpending</code> == 0 now has <code>expectedSpending</code> shown.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other Specification:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When adding an new <code>Person</code>, the <code>/as</code>(Actual Spending) is optional.
+if the actual spending is specified, the person is considered as existing
+customer. Otherwise potential customer. The prediction is to predict
+the potential customer&#8217;s spending based on the information on the
+existing customers.</p>
 </li>
 </ul>
 </div>
@@ -769,7 +784,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-31 17:45:50 UTC
+Last updated 2018-04-02 07:21:06 UTC
 </div>
 </div>
 </body>
