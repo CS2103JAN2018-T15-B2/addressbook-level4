@@ -44,14 +44,17 @@
 <li><a href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#predict-code-predict-code">3.16. Predict: <code>predict</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#intended-features">3.20. Intended Features</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-task-to-task-pad-coming-in-v2-0">3.22. add task to task pad`[coming in v2.0]`</a></li>
-<li><a href="#remove-task-on-task-pad-coming-in-v2-0">3.23. remove task on task pad`[coming in v2.0]`</a></li>
-<li><a href="#predict-purchasing-power">3.24. Predict Purchasing Power</a></li>
+<li><a href="#add-a-policy-code-add_policy-code">3.17. Add a policy : <code>add_policy</code></a></li>
+<li><a href="#edit-a-policy-code-edit_policy-code">3.18. Edit a policy : <code>edit_policy</code></a></li>
+<li><a href="#remove-a-policy-code-remove_policy-code">3.19. Remove a policy : <code>remove_policy</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.20. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.22. Saving the data</a></li>
+<li><a href="#intended-features">3.23. Intended Features</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#add-task-to-task-pad-coming-in-v2-0">3.25. add task to task pad`[coming in v2.0]`</a></li>
+<li><a href="#remove-task-on-task-pad-coming-in-v2-0">3.26. remove task on task pad`[coming in v2.0]`</a></li>
+<li><a href="#predict-purchasing-power">3.27. Predict Purchasing Power</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -639,28 +642,107 @@ existing customers.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="add-a-policy-code-add_policy-code"><a class="link" href="#add-a-policy-code-add_policy-code">3.17. Add a policy : <code>add_policy</code></a></h3>
+<div class="paragraph">
+<p>Add a policy to a person in the address book.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>add_policy INDEX beg/BEGINNING DATE exp/EXPIRATION DATE pr/PRICE [is/ISSUE]&#8230;&#8203;</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can have any number of issues covered (including 0)
+These can be added later with <code>edit_policy</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add_policy 1 beg/01/04/2018 exp/02/04/2020 pr/140 is/car_damage is/theft</code></p>
+</li>
+<li>
+<p><code>add_policy 3 beg/01/02/2018 exp/31/02/2018 pr/140 is/car_damage is/theft</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-a-policy-code-edit_policy-code"><a class="link" href="#edit-a-policy-code-edit_policy-code">3.18. Edit a policy : <code>edit_policy</code></a></h3>
+<div class="paragraph">
+<p>Edit the policy of a person in the address book.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit_policy INDEX [beg/BEGINNING DATE] [exp/EXPIRATION DATE] [pr/PRICE] [is/ISSUE]&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit_policy 2 beg/01/07/2018 exp/02/04/2019</code></p>
+</li>
+<li>
+<p><code>edit_policy 1 pr/100</code></p>
+</li>
+<li>
+<p><code>edit_policy 4 pr/150 is/theft is/house_damage</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-a-policy-code-remove_policy-code"><a class="link" href="#remove-a-policy-code-remove_policy-code">3.19. Remove a policy : <code>remove_policy</code></a></h3>
+<div class="paragraph">
+<p>Remove the policy of a person in the address book.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>remove_policy INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remove_policy 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.20. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.21. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.22. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="intended-features"><a class="link" href="#intended-features">3.20. Intended Features</a></h3>
+<h3 id="intended-features"><a class="link" href="#intended-features">3.23. Intended Features</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -676,25 +758,25 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-task-to-task-pad-coming-in-v2-0"><a class="link" href="#add-task-to-task-pad-coming-in-v2-0">3.22. add task to task pad`[coming in v2.0]`</a></h3>
+<h3 id="add-task-to-task-pad-coming-in-v2-0"><a class="link" href="#add-task-to-task-pad-coming-in-v2-0">3.25. add task to task pad`[coming in v2.0]`</a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to add a task to the task pad GUI  specifying the task title , task details</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-task-on-task-pad-coming-in-v2-0"><a class="link" href="#remove-task-on-task-pad-coming-in-v2-0">3.23. remove task on task pad`[coming in v2.0]`</a></h3>
+<h3 id="remove-task-on-task-pad-coming-in-v2-0"><a class="link" href="#remove-task-on-task-pad-coming-in-v2-0">3.26. remove task on task pad`[coming in v2.0]`</a></h3>
 <div class="paragraph">
 <p>the user is allowed to use command line to remove a task to the task pad GUI  specifying the task index</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="predict-purchasing-power"><a class="link" href="#predict-purchasing-power">3.24. Predict Purchasing Power</a></h3>
+<h3 id="predict-purchasing-power"><a class="link" href="#predict-purchasing-power">3.27. Predict Purchasing Power</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -779,6 +861,18 @@ e.g.<code>select 2</code></p>
 <li>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
+<li>
+<p><strong>Add a Policy</strong> : <code>add_policy</code><br>
+e.g. <code>add_policy 1 beg/01/04/2018 exp/02/04/2020 pr/140 is/car_damage is/theft</code></p>
+</li>
+<li>
+<p><strong>Edit a Policy</strong> : <code>edit_policy</code><br>
+e.g. <code>edit_policy 4 pr/150 is/theft is/house_damage</code></p>
+</li>
+<li>
+<p><strong>Remove a Policy</strong> : <code>remove_policy</code><br>
+e.g. <code>remove_policy 1</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -786,7 +880,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-05 05:38:57 UTC
+Last updated 2018-04-05 06:09:00 UTC
 </div>
 </div>
 </body>
