@@ -702,7 +702,7 @@ These can be added later with <code>edit_policy</code>
 <p><code>add_policy 1 beg/01/04/2018 exp/02/04/2020 pr/140 is/car_damage is/theft</code></p>
 </li>
 <li>
-<p><code>add_policy 3 beg/01/02/2018 exp/31/02/2018 pr/140 is/car_damage is/theft</code></p>
+<p><code>add_policy 3 beg/01/02/2018 exp/31/02/2018 pr/120</code></p>
 </li>
 </ul>
 </div>
@@ -714,6 +714,30 @@ These can be added later with <code>edit_policy</code>
 </div>
 <div class="paragraph">
 <p>Format: <code>edit_policy INDEX [beg/BEGINNING DATE] [exp/EXPIRATION DATE] [pr/PRICE] [is/ISSUE]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the policy of the person at the specified <code>INDEX</code>. The index refers to the index number shown
+in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing issues, the existing issues of the policy will be removed i.e adding of issues is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the policy&#8217;s issues by typing <code>is/</code> without specifying any issue after it.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -911,7 +935,7 @@ e.g. <code>remove_policy 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-05 13:01:11 UTC
+Last updated 2018-04-06 06:50:57 UTC
 </div>
 </div>
 </body>
