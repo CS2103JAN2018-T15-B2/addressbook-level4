@@ -632,6 +632,10 @@ The customer with <code>actualSpending</code> == 0 now has <code>expectedSpendin
 <div class="ulist">
 <ul>
 <li>
+<p>The solution is persistent. Hence when new users are added and old users are deleted,
+the new solutions are calculated incrementally from the old solution.</p>
+</li>
+<li>
 <p>When adding an new <code>Person</code>, the <code>/as</code>(Actual Spending) is optional.
 if the actual spending is specified, the person is considered as existing
 customer. Otherwise potential customer. The prediction is to predict
@@ -935,7 +939,7 @@ e.g. <code>remove_policy 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-06 06:50:57 UTC
+Last updated 2018-04-06 07:20:33 UTC
 </div>
 </div>
 </body>
