@@ -47,11 +47,12 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#add-remove-edit-appointment-feature">3.2. Add/Remove/Edit Appointment feature</a></li>
 <li><a href="#age-field-feature-v1-2">3.3. Age Field feature (V1.2)</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
-<li><a href="#prediction-function">3.7. Prediction Function</a></li>
-<li><a href="#policy-feature">3.8. Policy Feature</a></li>
+<li><a href="#new-person-detail-popup-window">3.4. New Person Detail Popup Window</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#prediction-function">3.8. Prediction Function</a></li>
+<li><a href="#policy-feature">3.9. Policy Feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1168,11 +1169,6 @@ come up with a better insurance policy.</p>
 <div class="paragraph">
 <p>To add a person with an age field, one must specify the age prefixed with the indicator <code>/age</code>:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>ADD n/NAME p/PHONE e/EMAIL a/ADDRESS i/INCOME as/ACTUALSPENDING es/EXPECTEDINCOME age/AGE [t/TAG]...</code></pre>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="future-improvements"><a class="link" href="#future-improvements">3.3.2. Future Improvements</a></h4>
@@ -1189,20 +1185,44 @@ come up with a better insurance policy.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="new-person-detail-popup-window"><a class="link" href="#new-person-detail-popup-window">3.4. New Person Detail Popup Window</a></h3>
+<div class="paragraph">
+<p>A new window will pop up that will show a detailed page of a customer when the user double clicks the person card. This
+is demonstrated as such:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/persondetail.png" alt="persondetail">
+</div>
+</div>
+<div class="paragraph">
+<p>This window will show various aspects of the customer, including a description that the user can add. Additionally, the
+use can change certain details by simply double clicking on each field and edit them.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>A new <code>.fxml</code> file is created that will display the persons attributes on a new window. A new event called
+<code>PersonCardDoubleClick</code> is created. This will listen to anytime a person card is double clicked. Subscribed listeners
+(eg. BrowserPanel) will be alerted and the new window will open.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1233,13 +1253,13 @@ come up with a better insurance policy.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="prediction-function"><a class="link" href="#prediction-function">3.7. Prediction Function</a></h3>
+<h3 id="prediction-function"><a class="link" href="#prediction-function">3.8. Prediction Function</a></h3>
 <div class="paragraph">
 <p>A command by the keyword of "predict" is added. It takes no argument.</p>
 </div>
@@ -1270,7 +1290,7 @@ The numerical solver used here is Stochastic Gradient Descent.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="policy-feature"><a class="link" href="#policy-feature">3.8. Policy Feature</a></h3>
+<h3 id="policy-feature"><a class="link" href="#policy-feature">3.9. Policy Feature</a></h3>
 <div class="paragraph">
 <p>The <code>Policy</code> field is an optional field attached to a person. It contains all the data
 about an insurance contract that a person applied to (if any).
@@ -1279,7 +1299,7 @@ covered. Each of these fields must be individually valid during the creation of 
 date needs to be prior to the expiration date.</p>
 </div>
 <div class="sect3">
-<h4 id="policy-date"><a class="link" href="#policy-date">3.8.1. Policy Date</a></h4>
+<h4 id="policy-date"><a class="link" href="#policy-date">3.9.1. Policy Date</a></h4>
 <div class="paragraph">
 <p>A <code>Date</code> inside of the Policy contains 3 fields : the day, the month and the year.
 The month is represented using the <code>Month</code> enumeration. The day and the year are just Integers.
@@ -1289,14 +1309,14 @@ The Policy that a Person applied to (if any) is displayed at the end of the card
 </div>
 </div>
 <div class="sect3">
-<h4 id="policy-price"><a class="link" href="#policy-price">3.8.2. Policy Price</a></h4>
+<h4 id="policy-price"><a class="link" href="#policy-price">3.9.2. Policy Price</a></h4>
 <div class="paragraph">
 <p>A <code>Price</code> inside of the Policy is just a positive or zero Integer. Each time a Price is created,
 its correctness is checked.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="policy-coverage"><a class="link" href="#policy-coverage">3.8.3. Policy Coverage</a></h4>
+<h4 id="policy-coverage"><a class="link" href="#policy-coverage">3.9.3. Policy Coverage</a></h4>
 <div class="paragraph">
 <p>The list of issues covered by a Policy comes in the form of the <code>Coverage</code> object. It contains a <code>List&lt;Issue&gt;</code>.
 <code>Issue</code> is an enumeration that tries to cover the main issues that an insurance could possibly cover. This enumeration
@@ -1307,7 +1327,7 @@ intention to edit the policy later, and add some issues to its Coverage.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-in-person"><a class="link" href="#implementation-in-person">3.8.4. Implementation in Person</a></h4>
+<h4 id="implementation-in-person"><a class="link" href="#implementation-in-person">3.9.4. Implementation in Person</a></h4>
 <div class="paragraph">
 <p>Since it is optional for a person in the address book to apply to a contract, the Policy field comes in the form
 of <code>Optional&lt;Policy&gt;</code>. This is technically breaking a java convention, because Optional
@@ -1318,7 +1338,7 @@ to do so, the <code>Optional&lt;T&gt;</code> type is very handy. The Policy fiel
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-policy"><a class="link" href="#adding-a-policy">3.8.5. Adding a Policy</a></h4>
+<h4 id="adding-a-policy"><a class="link" href="#adding-a-policy">3.9.5. Adding a Policy</a></h4>
 <div class="paragraph">
 <p>In order to add a Policy to a Person in the address book, it is required to use the <code>add_policy</code> command. This command
 asks the user to specify the index of the target user, the dates, the price and the issues covered by the Policy.
@@ -1328,7 +1348,7 @@ Issues. An <code>AddPolicyCommand</code> is then created and executed to add the
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-policy"><a class="link" href="#editing-a-policy">3.8.6. Editing a Policy</a></h4>
+<h4 id="editing-a-policy"><a class="link" href="#editing-a-policy">3.9.6. Editing a Policy</a></h4>
 <div class="paragraph">
 <p>If the user wants to edit a Policy, he must use the <code>edit_policy</code> command. He has to enter the index of the target user,
 and at least one field to edit.
@@ -1339,7 +1359,7 @@ inspired from the <code>EditPersonDescriptor</code> of the <code>EditCommand</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-policy"><a class="link" href="#removing-a-policy">3.8.7. Removing a Policy</a></h4>
+<h4 id="removing-a-policy"><a class="link" href="#removing-a-policy">3.9.7. Removing a Policy</a></h4>
 <div class="paragraph">
 <p>To remove a Policy, the user should use the <code>remove_policy</code> command. He then only has to enter the index of the target
 user. The parsing of this command is pretty straightforward since it only has the index parameter, and it is done in
@@ -2899,7 +2919,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 06:36:56 UTC
+Last updated 2018-04-11 13:34:03 UTC
 </div>
 </div>
 </body>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Jonathan Wen - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Jonathan Wen - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added the ability to open a <strong>detailed description page</strong> of a person in the addressbook</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: When the user double clicks on the person card, a new window appears, allowing the user to see a detailed description of the person and allow them to edit certain details.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because it makes it easier to keep track of multiple persons at a time. For example, one can open multiple customer pages and compare them side by side.</p>
+</li>
+<li>
+<p>Highlights: There were various parts of the app that required changed due to this enhancement. New FXML files needed to be created, as well as new event listeners. A description field was also added, which required changes in all parts of the application.</p>
+</li>
+<li>
+<p>Credits: Took parts from the PersonCard.java file as a base, but heavily expanded on it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Added an Age field to help identify users more clearly. The user is able to add a new customer with an age by specifying /age to the argument.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Functional: [<a href="https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/functional/jstarw.md" class="bare">https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/functional/jstarw.md</a>]</p>
+</li>
+<li>
+<p>Test: [<a href="https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/test/jstarw.md" class="bare">https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/test/jstarw.md</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Released tag version <code>1.3</code> on Github</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed most functional tests to pass Travis tests when adding Age field.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="opening-person-detail-window"><a class="link" href="#opening-person-detail-window">Opening Person Detail Window</a></h3>
+<div class="paragraph">
+<p>This is a feature that allows users to open a new window with the person&#8217;s details. These are the following steps to do
+this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure that at least 1 contact exists int eh addressbook.</p>
+</li>
+<li>
+<p>Navigate to the PersonCard on the left side of the application.</p>
+</li>
+<li>
+<p>Double click on the card to bring up the popup window.</p>
+</li>
+<li>
+<p>When done viewing the details, close the window.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Multiple of these windows can be open at a time, allowing the user to compare contacts side by side.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="new-person-detail-popup-window"><a class="link" href="#new-person-detail-popup-window">New Person Detail Popup Window</a></h3>
+<div class="paragraph">
+<p>A new window will pop up that will show a detailed page of a customer when the user double clicks the person card. This
+is demonstrated as such:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/persondetail.png" alt="persondetail">
+</div>
+</div>
+<div class="paragraph">
+<p>This window will show various aspects of the customer, including a description that the user can add. Additionally, the
+use can change certain details by simply double clicking on each field and edit them.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>A new <code>.fxml</code> file is created that will display the persons attributes on a new window. A new event called
+<code>PersonCardDoubleClick</code> is created. This will listen to anytime a person card is double clicked. Subscribed listeners
+(eg. BrowserPanel) will be alerted and the new window will open.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="age-field-feature-v1-2"><a class="link" href="#age-field-feature-v1-2">Age Field feature (V1.2)</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
+<div class="paragraph">
+<p>One of the features that was added is the age field. When adding a new person to the addressbook now, the user must
+specify the age of the new person. This will allow the user to have a more accurate description of the client, and
+come up with a better insurance policy.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NewPersonListCard.png" alt="NewPersonListCard" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>To add a person with an age field, one must specify the age prefixed with the indicator <code>/age</code>:</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="future-improvements"><a class="link" href="#future-improvements">Future Improvements</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Include the age field when performing predictions</p>
+</li>
+<li>
+<p>Filter clients by their age</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-11 13:34:03 UTC
+</div>
+</div>
+</body>
+</html>
