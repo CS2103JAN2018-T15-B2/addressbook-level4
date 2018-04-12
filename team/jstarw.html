@@ -114,15 +114,44 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="opening-person-detail-window"><a class="link" href="#opening-person-detail-window">Opening Person Detail Window</a></h3>
+<h3 id="opening-person-detail-window-code-show-code"><a class="link" href="#opening-person-detail-window-code-show-code">Opening Person Detail Window: <code>show</code></a></h3>
 <div class="paragraph">
-<p>This is a feature that allows users to open a new window with the person&#8217;s details. These are the following steps to do
-this:</p>
+<p>This is a feature that allows users to open a new window with the person&#8217;s details.
+Format: <code>show NAME_OF_THE_PERSON</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The full name should be specified, since the command will scan for all contacts in order and show the first person it
+finds which matches the fields
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>show John Doe</code></p>
+</li>
+<li>
+<p><code>show Jonathan Wen</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Another option is to open the window up using the GUI. In order to do this:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure that at least 1 contact exists int eh addressbook.</p>
+<p>Ensure that at least 1 contact exists in the addressbook.</p>
 </li>
 <li>
 <p>Navigate to the PersonCard on the left side of the application.</p>
@@ -176,6 +205,10 @@ use can change certain details by simply double clicking on each field and edit 
 <code>PersonCardDoubleClick</code> is created. This will listen to anytime a person card is double clicked. Subscribed listeners
 (eg. BrowserPanel) will be alerted and the new window will open.</p>
 </div>
+<div class="paragraph">
+<p>It can also be opened using the <code>show</code> command. This takes in a name and scans the entire addressbook. Once the first
+person is found which matches the name, the window pops up. The matching is the same logic as the <code>find</code> command.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -216,7 +249,7 @@ come up with a better insurance policy.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-12 13:42:52 UTC
+Last updated 2018-04-12 16:07:37 UTC
 </div>
 </div>
 </body>

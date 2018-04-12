@@ -35,7 +35,7 @@
 <li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#opening-person-detail-window">3.8. Opening Person Detail Window</a></li>
+<li><a href="#opening-person-detail-window-code-show-code">3.8. Opening Person Detail Window: <code>show</code></a></li>
 <li><a href="#adding-an-appointment-code-add_appointment-code">3.9. Adding an appointment: <code>add_appointment</code></a></li>
 <li><a href="#remove-existing-appointment-code-remove_appointment-code">3.10. remove existing appointment : <code>remove_appointment</code></a></li>
 <li><a href="#editing-an-appointment-code-edit_appointment-code">3.11. Editing an appointment: <code>edit_appointment</code></a></li>
@@ -379,15 +379,44 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="opening-person-detail-window"><a class="link" href="#opening-person-detail-window">3.8. Opening Person Detail Window</a></h3>
+<h3 id="opening-person-detail-window-code-show-code"><a class="link" href="#opening-person-detail-window-code-show-code">3.8. Opening Person Detail Window: <code>show</code></a></h3>
 <div class="paragraph">
-<p>This is a feature that allows users to open a new window with the person&#8217;s details. These are the following steps to do
-this:</p>
+<p>This is a feature that allows users to open a new window with the person&#8217;s details.
+Format: <code>show NAME_OF_THE_PERSON</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The full name should be specified, since the command will scan for all contacts in order and show the first person it
+finds which matches the fields
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>show John Doe</code></p>
+</li>
+<li>
+<p><code>show Jonathan Wen</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Another option is to open the window up using the GUI. In order to do this:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure that at least 1 contact exists int eh addressbook.</p>
+<p>Ensure that at least 1 contact exists in the addressbook.</p>
 </li>
 <li>
 <p>Navigate to the PersonCard on the left side of the application.</p>
@@ -985,7 +1014,7 @@ e.g. <code>remove_policy 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-12 13:42:52 UTC
+Last updated 2018-04-12 16:07:37 UTC
 </div>
 </div>
 </body>
