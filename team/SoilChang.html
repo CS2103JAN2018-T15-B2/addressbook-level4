@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Chang HoHuan - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Chang HoHuan - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-smart-insurance-collection"><a class="link" href="#project-smart-insurance-collection">PROJECT: Smart Insurance Collection</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Smart Insurance Collection(SIC) is for insurance agents who <strong>prefer to use a desktop app for managing contacts and appointments</strong>. More importantly, SIC is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>Predict Command</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It predicts the potential spending of a new customer based on the information from the
+existing customers</p>
+</li>
+<li>
+<p>Justification: A insurance agents can have hundreds of potential customers. It would be very handy and essential for
+them to have a heuristics to rank the customers by priority. One obvious factor is how much the customer would spend on
+the insurance. Based on this, a "predict" command would be very useful to predict how much a potential customers
+will spend. Therefore the insurance agents can prioritise visiting those customers who are likely to spend more.</p>
+</li>
+<li>
+<p>Highlights: This features requires a lot of foundational enhancements from other parts of the application. The original
+address book does not come with the features to encode the information needed for the calculation. Hence I need to
+add in more features in order to develop this feature. In the process, I have made enhancements to every components from
+storage to the UI.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Income field, actual spending field and expected spending field.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/functional/SoilChang.md" class="bare">https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/functional/SoilChang.md</a>] [<a href="https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/test/SoilChang.md" class="bare">https://github.com/CS2103JAN2018-T15-B2/main/blob/master/collated/test/SoilChang.md</a>]}_</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Created and Integrated Travis into the repository</p>
+</li>
+<li>
+<p>Created and released production builds in version 1.4 and 1.5</p>
+</li>
+<li>
+<p>Created and Managed the main and side branches in the repository to manage the team project</p>
+</li>
+<li>
+<p>Created the team organisation and instantiated the organisation repository</p>
+</li>
+<li>
+<p>Helped and advised teammates on technical challenges in the whatsapp channel</p>
+</li>
+<li>
+<p>Managed and safeguard the main release branch to ensure everyone has a working build</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="predict-code-predict-code"><a class="link" href="#predict-code-predict-code">Predict: <code>predict</code></a></h3>
+<div class="paragraph">
+<p>Predict the potential spending of the of a new customer. Some of the customers have
+their "actual spending" recorded down while some don&#8217;t have because they have
+not spent anything yet on the insurance policy. Hence this command is to
+predict how much they will spend based on the information from the existing customers</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Initially</code><br>
+two customers with <code>actualSpending</code> &gt; 0 while the other with
+<code>actualSpending</code> == 0(actual spending will actually not be shown
+if it is zero).</p>
+</li>
+<li>
+<p><code>After</code><br>
+The customer with <code>actualSpending</code> == 0 now has <code>expectedSpending</code> shown.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other Specification:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The solution is persistent. Hence when new users are added and old users are deleted,
+the new solutions are calculated incrementally from the old solution.</p>
+</li>
+<li>
+<p>When adding an new <code>Person</code>, the <code>/as</code>(Actual Spending) is optional.
+if the actual spending is specified, the person is considered as existing
+customer. Otherwise potential customer. The prediction is to predict
+the potential customer&#8217;s spending based on the information on the
+existing customers.</p>
+</li>
+<li>
+<p>The solution is calculated through numerical methods. And numerical methods,
+unlike Jesus, can&#8217;t solve everything. There are certain inputs that will lead
+to divergent solution. Also, certain value might be too large to be captured
+even with double. Hence in situations like this, an message of "Divergent solution"
+would be presented with no prediction.</p>
+</li>
+<li>
+<p>Like "help" command, the design is fault-tolerant. If you type extra text such
+as <code>predict abcde</code> or <code>predict nothing please</code>, those are not valid command since
+<code>predict</code> takes no other argument. But they will still be accepted as <code>predict</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Test input:<br>
+    1. <code>add n/John One p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/30000 as/1500 age/20</code><br>
+    2. <code>add n/John Two p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/15000 as/750 age/20</code><br>
+    3. <code>add n/John Three p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/10000  age/20</code><br>
+    4. <code>predict</code><br></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>==&gt;  John Three now shows expected spending of 500</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test Input 2:<br>
+    0. <code>clear</code><br>
+    1. <code>add n/John One p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/30000 as/1000 age/20</code><br>
+    2. <code>add n/John Two  p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/9000 as/300 age/20</code><br>
+    3. <code>add n/John Three p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/20000  age/20</code><br>
+    4. <code>predict</code><br></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>==&gt;  John Three should have 666.67 expected spending</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test Input 3:<br>
+    0. <code>clear</code><br>
+    1. <code>add n/John One p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/12345678000 as/150 age/20</code><br>
+    2. <code>add n/John Two  p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/15000 as/750 age/20</code><br>
+    3. <code>predict</code></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>==&gt;  divergent solution</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>this is to illustrate unrealistic extreme values might lead to divergent solution.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="prediction-function"><a class="link" href="#prediction-function">Prediction Function</a></h3>
+<div class="paragraph">
+<p>A command by the keyword of "predict" is added. It takes no argument.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Function</code> : Customers in the list may or may not have
+"actual spending" entered. Because at the point in time,
+the customer has not purchased any policy at all.
+Hence it would be convenient to have a way to predict the
+likely amount of purchase they would make so that the
+insurance agent can prioritize those customers with higher
+likelihood to spend more.</p>
+</li>
+<li>
+<p><code>Implementation</code> : Each customer&#8217;s data would be extracted as a row.
+The column represents. Each Targeted fields such as income, age and so on.
+The model used here is linear regression. That means we assume the purchase made
+by the customer is a linear combination of all the targeted fields.
+This model is not perfect. However for the first version of this
+function, we will just use this model. These data would form a matrix.
+Imaging a form of Ax=b where A is a matrix and x is a vector of weights
+and b is the expected outcome. The name of the game is to find the
+weights that minimises the loss of the objective function A.
+The numerical solver used here is Stochastic Gradient Descent.
+image::ModelClassDiagramUpdated.png[width="800"]</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-13 15:37:17 UTC
+</div>
+</div>
+</body>
+</html>
