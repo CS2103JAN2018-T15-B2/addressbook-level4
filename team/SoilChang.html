@@ -224,28 +224,246 @@ as <code>predict abcde</code> or <code>predict nothing please</code>, those are 
 <div class="ulist">
 <ul>
 <li>
-<p><code>Function</code> : Customers in the list may or may not have
-"actual spending" entered. Because at the point in time,
-the customer has not purchased any policy at all.
-Hence it would be convenient to have a way to predict the
-likely amount of purchase they would make so that the
-insurance agent can prioritize those customers with higher
-likelihood to spend more.</p>
+<p><code>Overview</code> : Customers in the list may or may not have
+"actual spending" entered. Because at the point,
+the customer may not have purchased any policy at all. Those
+customers without actual spending would be those customers who
+have not spent anything. Predict function would use gradient descent
+method to reach the least square regression line. And the value produced
+by the least square regression line would be used as the prediction value.</p>
 </li>
 <li>
-<p><code>Implementation</code> : Each customer&#8217;s data would be extracted as a row.
-The column represents. Each Targeted fields such as income, age and so on.
-The model used here is linear regression. That means we assume the purchase made
-by the customer is a linear combination of all the targeted fields.
-This model is not perfect. However for the first version of this
-function, we will just use this model. These data would form a matrix.
-Imaging a form of Ax=b where A is a matrix and x is a vector of weights
-and b is the expected outcome. The name of the game is to find the
-weights that minimises the loss of the objective function A.
-The numerical solver used here is Stochastic Gradient Descent.
-image::ModelClassDiagramUpdated.png[width="800"]</p>
+<p><code>Implementation</code> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>GradientDescent</code> is designed to be a singleton class. The reason for that is
+the weights from the previous calculation should be retained and used for the subsequent
+calculation. Therefore only one instantiation of this class is allowed.</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> GradientDescent(PredictionModel model) {
+        <span class="local-variable">this</span>.model = model;
+    }
+
+    <span class="directive">public</span> <span class="directive">static</span> GradientDescent getInstance(PredictionModel model) {
+        <span class="keyword">if</span> (instance == <span class="predefined-constant">null</span>) {
+            instance = <span class="keyword">new</span> GradientDescent(model);
+            instance.resetWeights();
+        }
+        <span class="keyword">return</span> instance;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The constructor takes a <code>PredictionModel</code>.</p>
+</div>
+<div class="paragraph">
+<p>PredictionModel is a interface that extends Model interface. The reason for this implementation is
+that <code>GradientDescent</code> requires some specific methods from the <code>Model</code> interface. And those methods are
+not useful to any other part of the app. Hence a new interface is created for <code>ModelManager</code> to implement
+specifically for gradient descent purpose. This to ensure the proper separation of concern and encapsulation.
+Those components that does not interact with predict command will not need to know the existence of those
+methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">PredictionModel</span> <span class="directive">extends</span> Model {
+    <span class="type">void</span> preparePredictionData(<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt;&gt; matrix, <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; targets,
+                               <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; normalizationConstant);
+
+    <span class="type">void</span> updatePredictionResult(<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; weights)
+            <span class="directive">throws</span> CommandException;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>GradientDescent</code> class is a simply a solver. The driver class is a public method called <code>solve()</code>.
+It does not take any arguments. All the parameters required to run the solver is generated automatically
+within the class.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult solve() <span class="directive">throws</span> CommandException {
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The solver consists of 5 Steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Instantiation</p>
+</li>
+<li>
+<p>Data Preparation</p>
+</li>
+<li>
+<p>Solving</p>
+</li>
+<li>
+<p>Validating</p>
+</li>
+<li>
+<p>Update Results</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>Instantiation</code>:<br></p>
+</div>
+<div class="paragraph">
+<p>The solver basically follows the equation of Aw=x, where
+A is a matrix, w is the weights and x is the target output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt;&gt; matrix = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;(<span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;());
+<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; targets = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Data Preparation</code>:<br></p>
+</div>
+<div class="paragraph">
+<p>A method from <code>PredictionModel</code> interface is invoked to to extract the relevant values from the
+<code>ModelManager</code> to the function. This implementation is to ensure proper encapsulation. <code>GradientDescent</code>
+does not need to know what data is available or what formats are those data stored in the
+<code>ModelManager</code>. It only needs to know a consistent matrix A and vector x are passed back.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="local-variable">this</span>.model.preparePredictionData(matrix, targets, normalizationConstant);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Solving</code>:<br></p>
+</div>
+<div class="paragraph">
+<p>A function call to descent().</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">descent(matrix, targets);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The implementation of descent():
+The idea is simply looping through each epoch and calculate the outcome and error. use their difference
+and learning rate to generate an update for the weights.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> descent(<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt;&gt; matrix, <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; targets) {
+    <span class="keyword">for</span> (<span class="type">int</span> itt = <span class="integer">0</span>; itt &lt; epoch; itt++) {
+
+        <span class="comment">//check data validity</span>
+        <span class="keyword">if</span> (<span class="local-variable">this</span>.hasNaN(<span class="local-variable">this</span>.weights)) {
+            <span class="local-variable">this</span>.logger.warning(<span class="string"><span class="delimiter">&quot;</span><span class="content">The solution is not convergent</span><span class="delimiter">&quot;</span></span>);
+            <span class="keyword">break</span>;
+        }
+
+        <span class="comment">// fixed amount of training iteration</span>
+        <span class="keyword">for</span> (<span class="type">int</span> r = <span class="integer">0</span>; r &lt; matrix.size(); r++) { <span class="comment">//going through each training data</span>
+
+            <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; row = matrix.get(r);
+            <span class="predefined-type">Double</span> outcome = predict(row);
+            <span class="predefined-type">Double</span> error = targets.get(r) - outcome;
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; row.size(); i++) {
+                <span class="predefined-type">Double</span> deltaW = <span class="local-variable">this</span>.learningRate * error * row.get(i);
+                <span class="local-variable">this</span>.weights.set(i, <span class="local-variable">this</span>.weights.get(i) + deltaW);
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Validating</code>:<br>
+Here a simple method is used to validate the accuracy of the results. After the weights are
+obtained, we validate it against the existing data. See how far off they are as compared to
+the existing data. By right the training set and validation set should be separated. But since
+for the current use case, the data entries are usually very little. Hence this simplified method
+is used instead.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">Double</span> validate(<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt;&gt; matrix, <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">Double</span>&gt; targets) {
+    <span class="predefined-type">Double</span> average = <span class="float">0.0</span>;
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; matrix.size(); i++) {
+
+        <span class="comment">//loop through each row</span>
+
+        <span class="predefined-type">Double</span> outcome = <span class="local-variable">this</span>.predict(matrix.get(i));
+        <span class="predefined-type">Double</span> error = <span class="predefined-type">Math</span>.abs((outcome - targets.get(i)) / targets.get(i));
+        average += (<span class="integer">1</span> - error);
+    }
+
+    <span class="predefined-type">Double</span> confidence = average / targets.size() * <span class="integer">100</span>;
+    <span class="keyword">if</span> (confidence &lt; <span class="integer">0</span>) {
+        confidence = <span class="float">0.0</span>;
+    } <span class="keyword">else</span> <span class="keyword">if</span> (confidence &gt; <span class="integer">100</span>) {
+        confidence = <span class="float">100.0</span>;
+    }
+    <span class="keyword">return</span> confidence;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Update Results</code>:<br>
+The implementation of updating follows closed to that of Edit command. The actual updating
+takes place in the model itself instead of <code>GradientDescent</code> class. Again, <code>GradientDescent</code>
+does not need to be concerned with how the model is updated.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">try</span> {
+    <span class="local-variable">this</span>.model.updatePredictionResult(<span class="local-variable">this</span>.getWeights());
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_PREDICTION_SUCCESS)
+            + <span class="string"><span class="delimiter">&quot;</span><span class="content">, with Confidence Rate </span><span class="delimiter">&quot;</span></span>
+            + <span class="predefined-type">String</span>.format(<span class="string"><span class="delimiter">&quot;</span><span class="content">%.2f</span><span class="delimiter">&quot;</span></span>, confidence)
+            + <span class="string"><span class="delimiter">&quot;</span><span class="content">%</span><span class="delimiter">&quot;</span></span>
+    );
+} <span class="keyword">catch</span> (CommandException e) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_PREDICTION_FAIL));
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Future Work</code>:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The regression line is currently 2 dimensional at the moment, with only
+the contribution from "actual spending" and "income". In the future, the parameters
+should be extended to multi-dimension with other fields included.</p>
+</li>
+<li>
+<p>Auto separate training set and validation set once data gets large enough.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagramUpdated.png" alt="ModelClassDiagramUpdated" width="800">
+</div>
 </div>
 </div>
 </div>
@@ -253,7 +471,7 @@ image::ModelClassDiagramUpdated.png[width="800"]</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 15:37:17 UTC
+Last updated 2018-04-14 02:12:20 UTC
 </div>
 </div>
 </body>
