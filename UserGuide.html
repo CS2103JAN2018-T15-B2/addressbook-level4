@@ -18,7 +18,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team T15-B2</code>      Since: <code>Jan 2018</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -94,7 +94,7 @@ This app will not work with earlier versions of Java 8.
 <p>Download the latest <code>SmartInsuranceCollection.jar</code> <a href="https://github.com/CS2103JAN2018-T15-B2/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for your Smart Insurance Collection.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -117,7 +117,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 <li>
 <p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/29000 as/1000 age/20</code> : adds a contact
-named <code>John Doe</code> to the Address Book.</p>
+named <code>John Doe</code> to the Smart Insurance Collection.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
@@ -170,7 +170,7 @@ named <code>John Doe</code> to the Address Book.</p>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
+<p>Adds a person to the Smart Insurance Collection<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME [as/ACTUALSPENDING] b/AGE [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -202,14 +202,14 @@ A person can have any number of tags (including 0)
 <div class="sect2">
 <h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
+<p>Shows a list of all persons in the Smart Insurance Collection.<br>
 Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
+<p>Edits an existing person in the Smart Insurance Collection.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [as/ACTUALSPENDING] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -299,7 +299,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 <div class="sect2">
 <h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
+<p>Deletes the specified person from the Smart Insurance Collection.<br>
 Format: <code>delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -327,7 +327,7 @@ Format: <code>delete INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+Deletes the 2nd person in the Smart Insurance Collection.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -368,7 +368,7 @@ Format: <code>select INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
+Selects the 2nd person in the Smart Insurance Collection.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -436,7 +436,7 @@ finds which matches the fields
 <div class="sect2">
 <h3 id="adding-an-appointment-code-add_appointment-code"><a class="link" href="#adding-an-appointment-code-add_appointment-code">3.9. Adding an appointment: <code>add_appointment</code></a></h3>
 <div class="paragraph">
-<p>Adds an appointment to the address book calendar<br>
+<p>Adds an appointment to the Smart Insurance Collection calendar<br>
 Format: <code>add_appointment n/NAME S/START DATE TIME E/END DATE TIME</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -496,7 +496,7 @@ This works as we enforces unique titles for appointments.
 <div class="sect2">
 <h3 id="editing-an-appointment-code-edit_appointment-code"><a class="link" href="#editing-an-appointment-code-edit_appointment-code">3.11. Editing an appointment: <code>edit_appointment</code></a></h3>
 <div class="paragraph">
-<p>edit an existing appointment in the address book calendar<br>
+<p>edit an existing appointment in the Smart Insurance Collection calendar<br>
 Format: <code>edit_appointment ST/SEARCH TEXT n/NEW NAME S/NEW START DATE TIME E/NEW END DATE TIME</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -583,7 +583,7 @@ Format: <code>history</code></p>
 <div class="sect2">
 <h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
+<p>Restores the Smart Insurance Collection to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -594,7 +594,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the Smart Insurance Collection&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -756,7 +756,7 @@ as <code>predict abcde</code> or <code>predict nothing please</code>, those are 
 <div class="sect2">
 <h3 id="add-a-policy-code-add_policy-code"><a class="link" href="#add-a-policy-code-add_policy-code">3.17. Add a policy : <code>add_policy</code></a></h3>
 <div class="paragraph">
-<p>Add a policy to a person in the address book.</p>
+<p>Add a policy to a person in the Smart Insurance Collection.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>add_policy INDEX beg/BEGINNING DATE exp/EXPIRATION DATE pr/PRICE [is/ISSUE]&#8230;&#8203;</code></p>
@@ -791,7 +791,7 @@ These can be added later with <code>edit_policy</code>
 <div class="sect2">
 <h3 id="edit-a-policy-code-edit_policy-code"><a class="link" href="#edit-a-policy-code-edit_policy-code">3.18. Edit a policy : <code>edit_policy</code></a></h3>
 <div class="paragraph">
-<p>Edit the policy of a person in the address book.</p>
+<p>Edit the policy of a person in the Smart Insurance Collection.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>edit_policy INDEX [beg/BEGINNING DATE] [exp/EXPIRATION DATE] [pr/PRICE] [is/ISSUE]&#8230;&#8203;</code></p>
@@ -840,7 +840,7 @@ in the last person listing. The index <strong>must be a positive integer</strong
 <div class="sect2">
 <h3 id="remove-a-policy-code-remove_policy-code"><a class="link" href="#remove-a-policy-code-remove_policy-code">3.19. Remove a policy : <code>remove_policy</code></a></h3>
 <div class="paragraph">
-<p>Remove the policy of a person in the address book.</p>
+<p>Remove the policy of a person in the Smart Insurance Collection.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>remove_policy INDEX</code></p>
@@ -859,7 +859,7 @@ in the last person listing. The index <strong>must be a positive integer</strong
 <div class="sect2">
 <h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.20. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
+<p>Clears all entries from the Smart Insurance Collection.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
@@ -873,7 +873,7 @@ Format: <code>exit</code></p>
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.22. Saving the data</a></h3>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>Smart Insurance Collection data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
@@ -929,7 +929,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Smart Insurance Collection folder.</p>
 </div>
 </div>
 </div>
@@ -1014,7 +1014,7 @@ e.g. <code>remove_policy 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 09:16:10 UTC
+Last updated 2018-04-15 09:39:25 UTC
 </div>
 </div>
 </body>
