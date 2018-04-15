@@ -149,7 +149,7 @@ Format: <code>add_appointment n/NAME S/START DATE TIME E/END DATE TIME</code></p
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The date time must be entered in the d/MM/yyyy HH:mm format+
+The date time must be entered in the d/MM/yyyy HH:mm format<br>
 The name given to the appointment as its title must be unique
 </td>
 </tr>
@@ -167,7 +167,7 @@ The name given to the appointment as its title must be unique
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-existing-appointment-code-remove_appointment-code"><a class="link" href="#remove-existing-appointment-code-remove_appointment-code">remove existing appointment : <code>remove_appointment</code></a></h3>
+<h3 id="removing-existing-appointment-code-remove_appointment-code"><a class="link" href="#removing-existing-appointment-code-remove_appointment-code">Removing existing appointment : <code>remove_appointment</code></a></h3>
 <div class="paragraph">
 <p>Removes appointment whose title match the given search text<br>
 Format: <code>remove_appointment ST/SEARCH TEXT</code></p>
@@ -179,8 +179,8 @@ Format: <code>remove_appointment ST/SEARCH TEXT</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-only the title is searched, appointment with the title that match the given search text will be removed
-This works as we enforces unique titles for appointments.
+Only the title is searched, appointment with the title that match the given search text will be removed.
+This works as we enforce unique titles for appointments.
 </td>
 </tr>
 </table>
@@ -191,7 +191,7 @@ This works as we enforces unique titles for appointments.
 <div class="ulist">
 <ul>
 <li>
-<p><code>remove_appointment ST/Title of the appointment</code></p>
+<p><code>remove_appointment ST/TITLE OF APPOINTMENT TO BE REMOVED</code></p>
 </li>
 </ul>
 </div>
@@ -229,10 +229,10 @@ do not duplicates with other existing appointments
 </div>
 </div>
 <div class="sect2">
-<h3 id="look-at-a-date-code-look-code"><a class="link" href="#look-at-a-date-code-look-code">Look At a Date: <code>look</code></a></h3>
+<h3 id="looking-at-a-date-code-look-code"><a class="link" href="#looking-at-a-date-code-look-code">Looking At a Date: <code>look</code></a></h3>
 <div class="paragraph">
 <p>look at a specific date, the Calendar GUI will focus on the date<br>
-Format: <code>look DF/18/03/2018</code></p>
+Format: <code>look DF/DATE</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -258,22 +258,22 @@ Note that the date format must be in d/MM/yyyy
 </div>
 </div>
 <div class="sect2">
-<h3 id="back-to-calendar-month-view-code-back-code"><a class="link" href="#back-to-calendar-month-view-code-back-code">Back to calendar Month View: <code>back</code></a></h3>
+<h3 id="back-to-calendar-month-view-code-back-code"><a class="link" href="#back-to-calendar-month-view-code-back-code">Back to Calendar Month View: <code>back</code></a></h3>
 <div class="paragraph">
 <p>set the Calendar View to Month View<br>
 Format: <code>back</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-task-to-task-pad-coming-in-v2-0"><a class="link" href="#add-task-to-task-pad-coming-in-v2-0">add task to task pad`[coming in v2.0]`</a></h3>
+<h3 id="adding-task-to-task-pad-code-coming-in-v2-0-code"><a class="link" href="#adding-task-to-task-pad-code-coming-in-v2-0-code">Adding task to task pad <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>the user is allowed to use command line to add a task to the task pad GUI  specifying the task title , task details</p>
+<p>the user is allowed to use command line to add a task to a task pad GUI by specifying the task title and task details</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-task-on-task-pad-coming-in-v2-0"><a class="link" href="#remove-task-on-task-pad-coming-in-v2-0">remove task on task pad`[coming in v2.0]`</a></h3>
+<h3 id="removing-task-on-task-pad-code-coming-in-v2-0-code"><a class="link" href="#removing-task-on-task-pad-code-coming-in-v2-0-code">Removing task on task pad <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>the user is allowed to use command line to remove a task to the task pad GUI  specifying the task index</p>
+<p>the user is allowed to use command line to remove a task on the task pad GUI by specifying the task index on the list</p>
 </div>
 </div>
 </div>
@@ -330,6 +330,14 @@ add/remove/edit an appointment.</p>
     }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>This is an extract of the Model component class diagram</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CalendarComponentClassDiagram.png" alt="CalendarComponentClassDiagram" width="800">
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -338,8 +346,8 @@ add/remove/edit an appointment.</p>
 </td>
 <td class="content">
 Both the <code>Calendar</code> class from the CalendarFx Lib and the <code>AppointmentEntry</code> list that the <code>InsuranceCalendar</code> class maintains are
-updated with the addition of the new appointment. Addition of entry to the <code>Calendar</code> object automatically reflects the change on the
-<code>CalendarView</code> GUI as well as the <code>AgendaView</code> GUI
+updated when adding/removing/editing appointments.Any changes will be automatically reflected on the
+<code>CalendarView</code> GUI as well as the <code>AgendaView</code> GUI.
 </td>
 </tr>
 </table>
@@ -347,6 +355,9 @@ updated with the addition of the new appointment. Addition of entry to the <code
 <div class="paragraph">
 <p>On the other hand, as a <code>AddressBookChangedEvent</code> is raised, the <code>EventCenter</code> calls the <code>Storage Manager</code> to handle this event and the
 added appointment is saved to persistent data</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarize what happens when the user executes an appointment command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -516,7 +527,7 @@ added appointment is saved to persistent data</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-appoinment-commands"><a class="link" href="#aspect-data-structure-to-support-the-appoinment-commands">Aspect: Data structure to support the appoinment commands</a></h5>
+<h5 id="aspect-data-structure-to-support-the-appointment-commands"><a class="link" href="#aspect-data-structure-to-support-the-appointment-commands">Aspect: Data structure to support the appointment commands</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -540,9 +551,7 @@ added appointment is saved to persistent data</p>
 <p>Pros: Clean and simple</p>
 </li>
 <li>
-<p>Cons: breaks the layering of the current architecture
-image::ModelClassDiagramUpdated.png[width="800"]
-image::UiClassDiagram.png[width="800"]</p>
+<p>Cons: breaks the layering of the current architecture</p>
 </li>
 </ul>
 </div>
@@ -550,6 +559,118 @@ image::UiClassDiagram.png[width="800"]</p>
 </ul>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="look-at-date-back-to-month-view-feature"><a class="link" href="#look-at-date-back-to-month-view-feature">Look at date/back to month view feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>These two GUI-based features do not cause an changes to the address book. They enable the user to switch the calendar GUI between month view and day view through the command lines.</p>
+</div>
+<div class="paragraph">
+<p>After the <code>commandBox</code> in UI passed the text field input with the specific command word to the <code>LogicManger</code>, <code>AddressBookParser</code> will identify the command word and
+call the CommandParser (in the case of 'look', for 'back' this step will be skipped) which will parse the input text and return a new Command object. The <code>LogicManger</code> will
+then execute this command.</p>
+</div>
+<div class="paragraph">
+<p>An example of the back to month view logic interactions is shown below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BackSequenceDiagram.png" alt="BackSequenceDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calendar unfocus and focus events posted to EventsCenter will be handled by the <code>CalendarPanel</code>.Please refer to the UI component class diagram.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Updated Diagrams to reflect the changes to original application</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagramUpdated.png" alt="ModelClassDiagramUpdated" width="800">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Instructions for Manual Testing</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-appointment"><a class="link" href="#adding-an-appointment">adding an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an appointment which will be reflected in the Calendar GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20/04/2018 14:00 E/20/04/2018 15:00</code><br>
+Expected: appointment successfully added, details of the added appointment shown in status message, Calendar GUI reflects the change</p>
+</li>
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20/04/2018 14:00 E/20/04/2018 11:00</code><br>
+Expected: appointment fails to be added, status message shows that this is due the the end date time is before start date time</p>
+</li>
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20-04-2018 14:00 E/20/04/2018 11:00</code><br>
+Expected: appointment fails to be added, status message shows the correct date time format for input</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-an-appointment"><a class="link" href="#removing-an-appointment">Removing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Removing an appointment by specifying its title</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>remove_appointment ST/meet John</code><br>
+Expected: if 'meet John' exists, the appointment will be removed and reflected on the Calendar GUI</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-an-appointment"><a class="link" href="#editing-an-appointment">Editing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing an appointment by specifying its title and the new field to edit</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>edit_appointment ST/meet John n/meet Josh</code><br>
+Expected: if 'meet John' exists, the appointment title will be changed to 'meet Josh' and reflected on the Calendar GUI</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -557,7 +678,7 @@ image::UiClassDiagram.png[width="800"]</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 11:45:16 UTC
+Last updated 2018-04-15 12:47:09 UTC
 </div>
 </div>
 </body>

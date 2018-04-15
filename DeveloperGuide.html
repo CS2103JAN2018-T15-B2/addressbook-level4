@@ -46,9 +46,9 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#add-remove-edit-appointment-feature">3.2. Add/Remove/Edit Appointment feature</a></li>
-<li><a href="#age-field-feature-v1-2">3.3. Age Field feature (V1.2)</a></li>
-<li><a href="#new-person-detail-popup-window">3.4. New Person Detail Popup Window</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#look-at-date-back-to-month-view-feature">3.3. Look at date/back to month view feature</a></li>
+<li><a href="#age-field-feature-v1-2">3.4. Age Field feature (V1.2)</a></li>
+<li><a href="#new-person-detail-popup-window">3.5. New Person Detail Popup Window</a></li>
 <li><a href="#logging">3.6. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 <li><a href="#prediction-function">3.8. Prediction Function</a></li>
@@ -97,6 +97,9 @@
 <li><a href="#launch-and-shutdown">I.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">I.2. Deleting a person</a></li>
 <li><a href="#saving-data">I.3. Saving data</a></li>
+<li><a href="#adding-an-appointment">I.4. adding an appointment</a></li>
+<li><a href="#removing-an-appointment">I.5. Removing an appointment</a></li>
+<li><a href="#editing-an-appointment">I.6. Editing an appointment</a></li>
 </ul>
 </li>
 </ul>
@@ -932,6 +935,14 @@ add/remove/edit an appointment.</p>
     }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>This is an extract of the Model component class diagram</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CalendarComponentClassDiagram.png" alt="CalendarComponentClassDiagram" width="800">
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -940,8 +951,8 @@ add/remove/edit an appointment.</p>
 </td>
 <td class="content">
 Both the <code>Calendar</code> class from the CalendarFx Lib and the <code>AppointmentEntry</code> list that the <code>InsuranceCalendar</code> class maintains are
-updated with the addition of the new appointment. Addition of entry to the <code>Calendar</code> object automatically reflects the change on the
-<code>CalendarView</code> GUI as well as the <code>AgendaView</code> GUI
+updated when adding/removing/editing appointments.Any changes will be automatically reflected on the
+<code>CalendarView</code> GUI as well as the <code>AgendaView</code> GUI.
 </td>
 </tr>
 </table>
@@ -949,6 +960,9 @@ updated with the addition of the new appointment. Addition of entry to the <code
 <div class="paragraph">
 <p>On the other hand, as a <code>AddressBookChangedEvent</code> is raised, the <code>EventCenter</code> calls the <code>Storage Manager</code> to handle this event and the
 added appointment is saved to persistent data</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarize what happens when the user executes an appointment command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1118,7 +1132,7 @@ added appointment is saved to persistent data</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-appoinment-commands"><a class="link" href="#aspect-data-structure-to-support-the-appoinment-commands">Aspect: Data structure to support the appoinment commands</a></h5>
+<h5 id="aspect-data-structure-to-support-the-appointment-commands"><a class="link" href="#aspect-data-structure-to-support-the-appointment-commands">Aspect: Data structure to support the appointment commands</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1153,9 +1167,43 @@ added appointment is saved to persistent data</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="age-field-feature-v1-2"><a class="link" href="#age-field-feature-v1-2">3.3. Age Field feature (V1.2)</a></h3>
+<h3 id="look-at-date-back-to-month-view-feature"><a class="link" href="#look-at-date-back-to-month-view-feature">3.3. Look at date/back to month view feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>These two GUI-based features do not cause an changes to the address book. They enable the user to switch the calendar GUI between month view and day view through the command lines.</p>
+</div>
+<div class="paragraph">
+<p>After the <code>commandBox</code> in UI passed the text field input with the specific command word to the <code>LogicManger</code>, <code>AddressBookParser</code> will identify the command word and
+call the CommandParser (in the case of 'look', for 'back' this step will be skipped) which will parse the input text and return a new Command object. The <code>LogicManger</code> will
+then execute this command.</p>
+</div>
+<div class="paragraph">
+<p>An example of the back to month view logic interactions is shown below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BackSequenceDiagram.png" alt="BackSequenceDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calendar unfocus and focus events posted to EventsCenter will be handled by the <code>CalendarPanel</code>.Please refer to the UI component class diagram.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="age-field-feature-v1-2"><a class="link" href="#age-field-feature-v1-2">3.4. Age Field feature (V1.2)</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>One of the features that was added is the age field. When adding a new person to the addressbook now, the user must
 specify the age of the new person. This will allow the user to have a more accurate description of the client, and
@@ -1171,7 +1219,7 @@ come up with a better insurance policy.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="future-improvements"><a class="link" href="#future-improvements">3.3.2. Future Improvements</a></h4>
+<h4 id="future-improvements"><a class="link" href="#future-improvements">3.4.2. Future Improvements</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1185,7 +1233,7 @@ come up with a better insurance policy.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="new-person-detail-popup-window"><a class="link" href="#new-person-detail-popup-window">3.4. New Person Detail Popup Window</a></h3>
+<h3 id="new-person-detail-popup-window"><a class="link" href="#new-person-detail-popup-window">3.5. New Person Detail Popup Window</a></h3>
 <div class="paragraph">
 <p>A new window will pop up that will show a detailed page of a customer when the user double clicks the person card. This
 is demonstrated as such:</p>
@@ -1200,7 +1248,7 @@ is demonstrated as such:</p>
 use can change certain details by simply double clicking on each field and edit them.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>A new <code>.fxml</code> file is created that will display the persons attributes on a new window. A new event called
 <code>PersonCardDoubleClick</code> is created. This will listen to anytime a person card is double clicked. Subscribed listeners
@@ -1210,12 +1258,6 @@ use can change certain details by simply double clicking on each field and edit 
 <p>It can also be opened using the <code>show</code> command. This takes in a name and scans the entire addressbook. Once the first
 person is found which matches the name, the window pops up. The matching is the same logic as the <code>find</code> command.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -2565,15 +2607,35 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="product-scope"><a class="link" href="#product-scope">Appendix B: Product Scope</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Target user profile</strong>:
-* Insurance agents who work under a big agency (eg. AIA, AIG)
-* has different categories of contacts to manage (eg. existing client, potential client, client making a claim)
-* Has a need to record various tasks pertaining to the list of contacts kept(eg. arrangement of appointment)
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps</p>
+<p><strong>Target user profile</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Insurance agents who work under a big agency (eg. AIA, AIG)</p>
+</li>
+<li>
+<p>has different categories of contacts to manage (eg. existing client, potential client, client making a claim)</p>
+</li>
+<li>
+<p>Has a need to record various tasks pertaining to the list of contacts kept(eg. arrangement of appointment)</p>
+</li>
+<li>
+<p>has a need to manage a significant number of contacts</p>
+</li>
+<li>
+<p>prefer desktop apps over other types</p>
+</li>
+<li>
+<p>can type fast</p>
+</li>
+<li>
+<p>prefers typing over mouse input</p>
+</li>
+<li>
+<p>is reasonably comfortable using CLI apps</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Value proposition</strong>: manage contacts and related tasks within one app such that it will be more convenient and efficient for the user to carry out his job</p>
@@ -2584,10 +2646,18 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="feature-contribution"><a class="link" href="#feature-contribution">Appendix C: Feature Contribution</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>YuxiangSG</strong>:
-* Major feature: calendar with appointment support that allow user to add, remove, modify appointments and reflect these changes on a calendar GUI
-* Minor feature: New app layout and theme, calendar GUI manipulation that allow the user to focus on a single day and back to month view, an agenda panel
-that display the appointments for next month</p>
+<p><strong>YuxiangSG</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Major feature: calendar with appointment support that allow user to add/remove/modify appointments and reflect these changes on a calendar GUI</p>
+</li>
+<li>
+<p>Minor feature: New app layout and theme, calendar GUI manipulation that allow the user to focus on a single day and back to month view, an agenda panel
+that display the most immediate appointments</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>jstarw</strong>:</p>
@@ -2844,7 +2914,7 @@ It contains multiple classes and enumerations to precisely describe a user&#8217
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User click on the calendar to specify the date to add</p>
+<p>User specifies the title and date for the appointment as input</p>
 </li>
 <li>
 <p>User requests to add an appointment</p>
@@ -3132,12 +3202,74 @@ Expected: Similar to previous.</p>
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-an-appointment"><a class="link" href="#adding-an-appointment">I.4. adding an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an appointment which will be reflected in the Calendar GUI</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20/04/2018 14:00 E/20/04/2018 15:00</code><br>
+Expected: appointment successfully added, details of the added appointment shown in status message, Calendar GUI reflects the change</p>
+</li>
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20/04/2018 14:00 E/20/04/2018 11:00</code><br>
+Expected: appointment fails to be added, status message shows that this is due the the end date time is before start date time</p>
+</li>
+<li>
+<p>Test case: <code>add_appointment n/meet John S/20-04-2018 14:00 E/20/04/2018 11:00</code><br>
+Expected: appointment fails to be added, status message shows the correct date time format for input</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-an-appointment"><a class="link" href="#removing-an-appointment">I.5. Removing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Removing an appointment by specifying its title</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>remove_appointment ST/meet John</code><br>
+Expected: if 'meet John' exists, the appointment will be removed and reflected on the Calendar GUI</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-an-appointment"><a class="link" href="#editing-an-appointment">I.6. Editing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing an appointment by specifying its title and the new field to edit</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>edit_appointment ST/meet John n/meet Josh</code><br>
+Expected: if 'meet John' exists, the appointment title will be changed to 'meet Josh' and reflected on the Calendar GUI</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 11:45:16 UTC
+Last updated 2018-04-15 12:47:09 UTC
 </div>
 </div>
 </body>
